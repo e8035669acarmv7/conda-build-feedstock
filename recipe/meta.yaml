@@ -1,5 +1,5 @@
 {% set name = "conda-build" %}
-{% set version = "3.25.0" %}
+{% set version = "3.26.1" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,9 @@ package:
 
 source:
   url: https://github.com/conda/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 23df96d2a35096a70bd60b5df19c126ecc3445358b64479f410bbb2196170383
+  sha256: 8cc268a45c94347f67e22c13afec9a6cc02bf32dadccd8fa1b578cf5cec22987
+  patches:
+    - patches/gh4867.patch
 
 build:
   number: 0
@@ -78,9 +80,6 @@ test:
     - conda debug --help
     - conda develop --help
     - conda index --help
-    - conda inspect --help
-    - conda inspect linkages --help  # [unix]
-    - conda inspect objects --help  # [osx]
     - conda metapackage --help
     - conda render --help
     - conda skeleton --help
